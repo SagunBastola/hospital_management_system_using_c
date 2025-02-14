@@ -130,6 +130,10 @@ typedef struct patient{
 
 
         }
+        else
+        {
+            printf("Doctor not found\n");
+        }
     }
 }
 
@@ -149,7 +153,7 @@ int main(){
     int choice;
      // infinite loop in while(true) ; the loop can be countered by switch statement
      while(1){  
-        system("cls");
+        // system("cls");
         printf("\t\t\t\t<-------Hospital Management system------->\n\n");
         printf("\t1. Admit Patient\n");
         printf("\t2. Discharge Patient\n");
