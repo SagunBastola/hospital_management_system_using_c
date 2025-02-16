@@ -32,25 +32,7 @@ typedef struct patient{
         
     }
 
-    void patient_list()
-{
-    struct patient s;
-    FILE *fp;
-    fp=fopen("patient.txt","rb");
-    while(fread(&s,sizeof(s),1,fp)==1)
-    {
-        printf("ID: %d\n", s.id);
-        printf("Name: %s\n", s.pname);
-        printf("Age: %d\n", s.age);
-        printf("Gender: %s\n", s.gender);
-        printf("Address: %s\n", s.address);
-        printf("Symptoms: %s\n", s.symptomes);
-        printf("Checked by: %s\n", s.checkby);
-        printf("Date: %d/%d/%d\n", s.date[0], s.date[1], s.date[2]);
-        printf("\n");
-    }
-    fclose(fp);
-}
+    void patient_list();
 
     void available_doctor(){
         
@@ -59,7 +41,96 @@ typedef struct patient{
     void add_doctor(){
         
     }
-    void appointment()
+    void appointment();
+
+
+
+
+
+
+
+
+FILE *fp;
+
+
+
+int main(){
+
+    int choice;
+     // infinite loop in while(true) ; the loop can be countered by switch statement
+     while(1){  
+        // system("cls");
+        printf("\t\t\t\t<-------Hospital Management system------->\n\n");
+        printf("\t1. Admit Patient\n");
+        printf("\t2. Discharge Patient\n");
+        printf("\t3. Patient List\n");
+        printf("\t4. Available Doctor\n");
+        printf("\t5. Add Doctor\n");
+        printf("\t6. Appointment\n");
+        printf("\t0. Exit\n");
+        printf("\n------------------------------------------------------");
+        printf("\nEnter your choice :\t");
+        scanf("%d",&choice);
+        while (getchar() != '\n');  // Clear input buffer
+
+
+        switch (choice) {
+            case 1:
+                admit_patient();
+                break;
+            case 2:
+                discharge_patient();
+                break;
+            case 3:
+                patient_list();
+                break;
+            case 4:
+                available_doctor();
+                break;
+            case 5:
+                add_doctor();
+                break;
+            case 6:
+            	appointment();
+            	break;
+            case 0:
+                printf("Exiting program...\n");
+                exit(0); 
+            default:
+                printf("Invalid choice! Try again.\n");
+        }
+        printf("\n\n\t\t Press any key to continue---");
+        getchar();
+     }
+
+
+
+
+
+    return 0;
+}
+
+void patient_list()
+{
+        struct patient s;
+        FILE *fp;
+        fp=fopen("patient.txt","rb");
+        while(fread(&s,sizeof(s),1,fp)==1)
+        {
+            printf("ID: %d\n", s.id);
+            printf("Name: %s\n", s.pname);
+            printf("Age: %d\n", s.age);
+            printf("Gender: %s\n", s.gender);
+            printf("Address: %s\n", s.address);
+            printf("Symptoms: %s\n", s.symptomes);
+            printf("Checked by: %s\n", s.checkby);
+            printf("Date: %d/%d/%d\n", s.date[0], s.date[1], s.date[2]);
+            printf("\n");
+        }
+        fclose(fp);
+}
+
+void appointment()
 {   
     int i=0;
     int dokid;
@@ -136,71 +207,3 @@ typedef struct patient{
         }
     }
 }
-
-
-
-
-
-
-
-
-FILE *fp;
-
-
-
-int main(){
-
-    int choice;
-     // infinite loop in while(true) ; the loop can be countered by switch statement
-     while(1){  
-        // system("cls");
-        printf("\t\t\t\t<-------Hospital Management system------->\n\n");
-        printf("\t1. Admit Patient\n");
-        printf("\t2. Discharge Patient\n");
-        printf("\t3. Patient List\n");
-        printf("\t4. Available Doctor\n");
-        printf("\t5. Add Doctor\n");
-        printf("\t6. Appointment\n");
-        printf("\t0. Exit\n");
-        printf("\n------------------------------------------------------");
-        printf("\nEnter your choice :\t");
-        scanf("%d",&choice);
-        while (getchar() != '\n');  // Clear input buffer
-
-
-        switch (choice) {
-            case 1:
-                admit_patient();
-                break;
-            case 2:
-                discharge_patient();
-                break;
-            case 3:
-                patient_list();
-                break;
-            case 4:
-                available_doctor();
-                break;
-            case 5:
-                add_doctor();
-                break;
-            case 6:
-            	appointment();
-            	break;
-            case 0:
-                printf("Exiting program...\n");
-                exit(0); 
-            default:
-                printf("Invalid choice! Try again.\n");
-        }
-        printf("\n\n\t\t Press any key to continue---");
-        getchar();
-     }
-
-
-
-
-
-    return 0;
-}
-
